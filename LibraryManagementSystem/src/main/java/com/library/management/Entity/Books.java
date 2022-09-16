@@ -40,7 +40,7 @@ public class Books {
 	private User createdBy;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "updatedBy")
+	@JoinColumn(name = "modifiedBy")
 	private User modifiedBy;
 	
 	@CreationTimestamp
@@ -176,6 +176,14 @@ public class Books {
 
 	public Books() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Books [bookId=" + bookId + ", title=" + title + ", edition=" + edition + ", author=" + author
+				+ ", publisher=" + publisher + ", category=" + category + ", price=" + price + ", copies=" + copies
+				+ ", createdBy=" + createdBy + ", modifiedBy=" + modifiedBy + ", createdOn=" + createdOn
+				+ ", modifiedOn=" + modifiedOn + ", user=" + user + "]";
 	}
 
 

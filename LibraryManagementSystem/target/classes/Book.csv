@@ -1,0 +1,6 @@
+BookId	Title	Edition	Author	Publisher	Category	Price	Copies
+101	Java	First	James Gosling	JDK	Tech	350.5	10
+102	Spring	Second	Jack	JRE	IT	500.59	12
+103	SpringBoot	First	Jim	JVM	IT	250.23	8
+104	SpringBatch	Third	Clark	JVM	Tech	785.2	5
+105	MySQL	First	Peter	JDK	Tech	321	25
