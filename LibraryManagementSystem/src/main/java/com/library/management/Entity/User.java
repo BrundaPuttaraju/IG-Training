@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -129,7 +128,7 @@ public class User {
 		return "User [userId=" + userId + ", userType=" + userType + ", email=" + email + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", phoneNo=" + phoneNo + ", address=" + address + ", books=" + books + "]";
 	}
-	
-	
 
+
+	
 }

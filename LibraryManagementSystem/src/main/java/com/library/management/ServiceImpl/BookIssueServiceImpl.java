@@ -3,6 +3,8 @@ package com.library.management.ServiceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.library.management.repository.UserRepository;
 @Service
 public class BookIssueServiceImpl implements BookIssueService{
 	
+	private static final Logger log = LoggerFactory.getLogger(BookServiceImpl.class);
+	
 	@Autowired
     private BookIssueInfoRepository bookIssueInfoRepository;
 
@@ -31,6 +35,7 @@ public class BookIssueServiceImpl implements BookIssueService{
 
 	@Override
 	public BookIssueInfo saveInfo(BookIssueInfo bookIssuedInfo, long userId, long bookId) {
+		log.info("adding the book details");
 		User user = userRepository.findById(userId).get();
         Books book = bookRepository.findById(bookId).get();
         bookIssuedInfo.setBookId(book);
@@ -42,11 +47,13 @@ public class BookIssueServiceImpl implements BookIssueService{
 
 	@Override
 	public List<BookIssueInfo> getAllInformations() {
+		log.info("fetching all book informations");
 		return bookIssueInfoRepository.findAll();
 	}
 
 	@Override
 	public Optional<BookIssueInfo> getInfoById(Long id) {
+		log.info("fetching all book information by id");
 		Optional<BookIssueInfo> bookIssuedInfo=bookIssueInfoRepository.findById(id);
         if(bookIssuedInfo.isPresent())
         {
@@ -59,6 +66,7 @@ public class BookIssueServiceImpl implements BookIssueService{
 
 	@Override
 	public List<BookIssueInfo> getInfoByStatus(String status) {
+		log.info("fetching the status of the book");
 		List<BookIssueInfo> bookStatus= bookIssueInfoRepository.findByStatus(status);
         if(bookStatus!=null){
             return bookStatus;
@@ -69,6 +77,7 @@ public class BookIssueServiceImpl implements BookIssueService{
 
 	@Override
 	public BookIssueInfo updateBookIssuedInfo(BookIssueInfo bookIssuedInfo) {
+		log.info("updating the book information by mentioned id");
 		BookIssueInfo transaction = bookIssueInfoRepository.findById(bookIssuedInfo.getTransactionId()).orElseThrow(
                 () -> new BookIssuedInfoNotFoundException("Transaction not found with id : " + bookIssuedInfo.getBookId()));
 		transaction.setUserId(bookIssuedInfo.getUserId());
@@ -86,6 +95,7 @@ public class BookIssueServiceImpl implements BookIssueService{
 
 	@Override
 	public void deleteInfo(long id) {
+		log.info("delete the book information by id");
 		Optional<BookIssueInfo> bookIssuedInfo = this.bookIssueInfoRepository.findById(id);
 
         if (bookIssuedInfo.isPresent()) {
